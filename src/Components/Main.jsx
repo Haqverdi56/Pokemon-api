@@ -1,10 +1,9 @@
-import React from "react";
+import React,{ useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPokemons } from "../store/pokemonSlice";
+import axios from "axios";
 import Card from "./Card";
 import Pokeinfo from "./Pokeinfo";
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 const Main=()=>{
     const [pokeData,setPokeData]=useState([]);
@@ -13,8 +12,7 @@ const Main=()=>{
     const [nextUrl,setNextUrl]=useState();
     const [prevUrl,setPrevUrl]=useState();
     const [pokeDex,setPokeDex]=useState();
-    // const pokes = useSelector(state=console.log(state))
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const pokeFun=async()=>{
         setLoading(true)
@@ -22,7 +20,7 @@ const Main=()=>{
         setNextUrl(res.data.next);
         setPrevUrl(res.data.previous);
         getPokemon(res.data.results)
-        // dispatch(nextUrl)
+        dispatch(fetchPokemons(nextUrl))
         setLoading(false)
     }
     const getPokemon=async(res)=>{
