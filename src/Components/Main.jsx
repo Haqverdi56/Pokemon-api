@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 const Main=()=>{
     const [pokeData,setPokeData]=useState([]);
     const [loading,setLoading]=useState(true);
@@ -12,8 +13,8 @@ const Main=()=>{
     const [nextUrl,setNextUrl]=useState();
     const [prevUrl,setPrevUrl]=useState();
     const [pokeDex,setPokeDex]=useState();
-    const pokes = useSelector(state=state.pokemons)
-    const dispatch = useDispatch()
+    // const pokes = useSelector(state=console.log(state))
+    // const dispatch = useDispatch()
 
     const pokeFun=async()=>{
         setLoading(true)
@@ -21,7 +22,7 @@ const Main=()=>{
         setNextUrl(res.data.next);
         setPrevUrl(res.data.previous);
         getPokemon(res.data.results)
-        dispatch(nextUrl)
+        // dispatch(nextUrl)
         setLoading(false)
     }
     const getPokemon=async(res)=>{
@@ -56,7 +57,7 @@ const Main=()=>{
                     </div>
                 </div>
                 <div className="right-content">
-                   <Pokeinfo pokes={pokes} data={pokeDex}/>
+                   <Pokeinfo data={pokeDex}/>
                 </div>
             </div>
         </>
