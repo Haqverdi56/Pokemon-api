@@ -1,13 +1,12 @@
-import Main from './components/Main.jsx'
-import './Components/style.css'
+import Main from './Components/Main';
+import './Components/style.css';
 
 function App() {
-  
-  return (
-    <div className="App">
-      <Main />
-    </div>
-  )
+	return (
+		<div className="App">
+			<Main />
+		</div>
+	);
 }
 
-export default App
+export default App;
